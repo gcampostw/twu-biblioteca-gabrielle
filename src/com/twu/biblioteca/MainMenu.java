@@ -7,16 +7,36 @@ import java.util.Scanner;
  */
 public class MainMenu {
 
+    private final int QUIT_CODE = 2;
+
     public String listOptions(){
-        return "1 - List Books";
+        return "1 - List Books\n" +
+               "2 - Quit";
     }
 
-    public String validateUserOptionInput(int option) {
-        String message = "";
+    public boolean validateUserOptionInput(int option) {
+        boolean validOption = true;
         if(option != 1){
-            message = "Select a valid option!";
+            System.out.println("Select a valid option!");
+            validOption = false;
         }
-        return message;
+        return validOption;
     }
 
+    public void printMenuHeader(){
+        System.out.println(listOptions());
+        System.out.print("Your option: ");
+    }
+
+    public void keepReadingUserInput(){
+        Scanner input = new Scanner(System.in);
+        printMenuHeader();
+        int option = input.nextInt();
+        while (option != QUIT_CODE){
+            validateUserOptionInput(option);
+            printMenuHeader();
+            option = input.nextInt();
+            System.out.println();
+        }
+    }
 }

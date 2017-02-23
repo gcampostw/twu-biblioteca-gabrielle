@@ -12,19 +12,20 @@ public class MainMenuTest {
     @Test
     public void shouldShowListBooksOption() throws Exception {
         MainMenu menu = new MainMenu();
-        assertEquals("1 - List Books", menu.listOptions());
+        assertEquals("1 - List Books\n" +
+                              "2 - Quit", menu.listOptions());
     }
 
     @Test
-    public void shouldReturnInvalidOptionMessage(){
+    public void shouldBeInvalidOption(){
         MainMenu menu = new MainMenu();
-        assertEquals("Select a valid option!", menu.validateUserOptionInput(2));
+        assertEquals(false, menu.validateUserOptionInput(2));
     }
 
     @Test
-    public void shouldReturnEmptyMessage(){
+    public void shouldBeValidOption(){
         MainMenu menu = new MainMenu();
-        assertEquals("", menu.validateUserOptionInput(1));
+        assertEquals(true, menu.validateUserOptionInput(1));
     }
 
 }

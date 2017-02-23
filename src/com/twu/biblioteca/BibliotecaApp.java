@@ -24,6 +24,6 @@ public class BibliotecaApp {
         MainMenu menu = new MainMenu();
         System.out.println(getWelcomeMessage());
         System.out.println("Choose your option: ");
-        System.out.println(menu.listOptions());
+        menu.keepReadingUserInput();
     }
 }
