@@ -20,9 +20,10 @@ public class BibliotecaApp {
     }
     public static void main(String[] args) {
 
-        Archive archive = loadArchive();
+        MainMenu menu = new MainMenu();
         System.out.println(getWelcomeMessage());
-        System.out.println(archive.listBooks());
+        System.out.println("Choose your option: ");
+        System.out.println(menu.listOptions());
 
     }
 }
