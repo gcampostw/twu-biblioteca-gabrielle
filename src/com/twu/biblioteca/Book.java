@@ -31,4 +31,12 @@ public class Book {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public boolean equals(Object book2){
+        if(this.title == ((Book)book2).title){
+            return true;
+        }
+        return false;
+    }
 }

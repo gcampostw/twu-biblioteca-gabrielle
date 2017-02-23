@@ -30,4 +30,9 @@ public class Archive {
         return listOfBooks;
     }
 
+    public boolean containsBook(Book book){
+        return books.contains(book);
+
+    }
+
 }

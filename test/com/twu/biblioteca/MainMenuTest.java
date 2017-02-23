@@ -3,6 +3,9 @@ package com.twu.biblioteca;
 import org.junit.Test;
 import sun.applet.Main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -26,6 +29,18 @@ public class MainMenuTest {
     public void shouldBeValidOption(){
         MainMenu menu = new MainMenu();
         assertEquals(true, menu.validateUserOptionInput(1));
+    }
+
+    @Test
+    public void shouldCheckOutAvailableBook(){
+        MainMenu menu = new MainMenu();
+        Book bible = new Book("Bible", "God", 0);
+        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
+        List<Book> books = new ArrayList<>();
+        books.add(bible);
+        books.add(americanGods);
+        Archive archive = new Archive(books);
+        assertEquals("Thank you! Enjoy the book", menu.checkoutBook(archive, "American Gods"));
     }
 
 }

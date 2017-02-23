@@ -39,4 +39,12 @@ public class MainMenu {
             System.out.println();
         }
     }
+
+    public String checkoutBook(Archive archive, String bookTitle) {
+        Book book = new Book(bookTitle, null, 0);
+        if(archive.containsBook(book)){
+            return "Thank you! Enjoy the book";
+        }
+        return "";
+    }
 }
