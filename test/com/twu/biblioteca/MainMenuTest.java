@@ -68,4 +68,18 @@ public class MainMenuTest {
         assertEquals("That book is not available", menu.checkoutBook(archive, "Bible"));
     }
 
+    @Test
+    public void shouldReturnBook(){
+        MainMenu menu = new MainMenu();
+        Book bible = new Book("Bible", "God", 0);
+        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
+        List<Book> books = new ArrayList<>();
+        bible.checkOut();
+        books.add(bible);
+        books.add(americanGods);
+        Archive archive = new Archive(books);
+        assertEquals("That book is not available", menu.checkoutBook(archive, "Bible"));
+        assertTrue(menu.returnBook(archive, "Bible"));
+    }
+
 }

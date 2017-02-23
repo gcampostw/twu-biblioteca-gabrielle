@@ -24,6 +24,10 @@ public class Book {
         this.checkedOut = true;
     }
 
+    public void returnBook(){
+        this.checkedOut = false;
+    }
+
     public boolean isCheckedOut() {
         return checkedOut;
     }

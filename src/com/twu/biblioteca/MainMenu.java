@@ -51,4 +51,15 @@ public class MainMenu {
         }
         return checkoutMessage;
     }
+
+    public boolean returnBook(Archive archive, String bookTitle){
+        Book book = new Book(bookTitle, null, 0);
+        boolean returnedBook = false;
+        archive.getBook(book).returnBook();
+        Book bookInArchive = archive.getBook(book);
+        if (!bookInArchive.isCheckedOut()) {
+            returnedBook = true;
+        }
+        return returnedBook;
+    }
 }
