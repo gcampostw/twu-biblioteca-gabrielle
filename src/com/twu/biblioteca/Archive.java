@@ -20,4 +20,14 @@ public class Archive {
         return listOfBooks;
     }
 
+    public String listBooks(){
+        String listOfBooks = "Title | Author | Year";
+        for (Book book: books) {
+            if(!book.isCheckedOut()){
+                listOfBooks = String.join("\n", listOfBooks, book.toString());
+            }
+        }
+        return listOfBooks;
+    }
+
 }
