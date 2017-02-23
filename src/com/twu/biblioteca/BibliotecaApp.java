@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BibliotecaApp {
 
@@ -24,6 +25,5 @@ public class BibliotecaApp {
         System.out.println(getWelcomeMessage());
         System.out.println("Choose your option: ");
         System.out.println(menu.listOptions());
-
     }
 }

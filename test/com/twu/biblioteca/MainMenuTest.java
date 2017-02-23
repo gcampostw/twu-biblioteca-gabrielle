@@ -11,8 +11,20 @@ import static org.junit.Assert.*;
 public class MainMenuTest {
     @Test
     public void shouldShowListBooksOption() throws Exception {
-        MainMenu mainMenu = new MainMenu();
-        assertEquals("1 - List Books", mainMenu.listOptions());
+        MainMenu menu = new MainMenu();
+        assertEquals("1 - List Books", menu.listOptions());
+    }
+
+    @Test
+    public void shouldReturnInvalidOptionMessage(){
+        MainMenu menu = new MainMenu();
+        assertEquals("Select a valid option!", menu.validateUserOptionInput(2));
+    }
+
+    @Test
+    public void shouldReturnEmptyMessage(){
+        MainMenu menu = new MainMenu();
+        assertEquals("", menu.validateUserOptionInput(1));
     }
 
 }
