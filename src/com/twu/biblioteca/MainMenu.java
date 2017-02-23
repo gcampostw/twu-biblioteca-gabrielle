@@ -42,9 +42,13 @@ public class MainMenu {
 
     public String checkoutBook(Archive archive, String bookTitle) {
         Book book = new Book(bookTitle, null, 0);
-        if(archive.containsBook(book)){
-            return "Thank you! Enjoy the book";
+        String checkoutMessage = "That book is not available";
+        if(archive.containsBook(book)) {
+            Book bookInArchive = archive.getBook(book);
+            if (!bookInArchive.isCheckedOut()) {
+                checkoutMessage = "Thank you! Enjoy the book";
+            }
         }
-        return "";
+        return checkoutMessage;
     }
 }

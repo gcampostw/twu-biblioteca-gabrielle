@@ -35,4 +35,9 @@ public class Archive {
 
     }
 
+    public Book getBook(Book book){
+        return books.get(books.indexOf(book));
+
+    }
+
 }

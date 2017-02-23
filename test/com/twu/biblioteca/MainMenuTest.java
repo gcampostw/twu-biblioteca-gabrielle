@@ -43,4 +43,29 @@ public class MainMenuTest {
         assertEquals("Thank you! Enjoy the book", menu.checkoutBook(archive, "American Gods"));
     }
 
+    @Test
+    public void shouldReturnErrorMessageWhenCheckingoutBookWithIncorrectBookTitle(){
+        MainMenu menu = new MainMenu();
+        Book bible = new Book("Bible", "God", 0);
+        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
+        List<Book> books = new ArrayList<>();
+        books.add(bible);
+        books.add(americanGods);
+        Archive archive = new Archive(books);
+        assertEquals("That book is not available", menu.checkoutBook(archive, "American Goods"));
+    }
+
+    @Test
+    public void shouldReturnErrorMessageWhenCheckingOutCheckedOutBook(){
+        MainMenu menu = new MainMenu();
+        Book bible = new Book("Bible", "God", 0);
+        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
+        List<Book> books = new ArrayList<>();
+        bible.checkOut();
+        books.add(bible);
+        books.add(americanGods);
+        Archive archive = new Archive(books);
+        assertEquals("That book is not available", menu.checkoutBook(archive, "Bible"));
+    }
+
 }
