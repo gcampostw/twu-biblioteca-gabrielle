@@ -1,8 +1,5 @@
 package com.twu.biblioteca;
 
-/**
- * Created by gcampos on 23/02/17.
- */
 public class Book {
     private String title;
     private int year;
@@ -38,7 +35,7 @@ public class Book {
 
     @Override
     public boolean equals(Object book2){
-        if(this.title == ((Book)book2).title){
+        if(this.title.equalsIgnoreCase(((Book) book2).title)){
             return true;
         }
         return false;

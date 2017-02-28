@@ -4,9 +4,6 @@ import exceptions.BookNotFoundException;
 
 import java.util.List;
 
-/**
- * Created by gcampos on 23/02/17.
- */
 public class Archive {
     private List<Book> books;
 
@@ -45,6 +42,37 @@ public class Archive {
 
     }
 
+    public String checkoutBook(String bookTitle) {
+        Book book = new Book(bookTitle, null, 0);
+        String checkoutMessage = "That book is not available";
+        if(containsBook(book)) {
+            Book bookInArchive;
+            try {
+                bookInArchive = getBook(book);
+            } catch (BookNotFoundException e) {
+                return checkoutMessage;
+            }
+            if (!bookInArchive.isCheckedOut()) {
+                bookInArchive.checkOut();
+                checkoutMessage = "Thank you! Enjoy the book";
+            }
+        }
+        return checkoutMessage;
+    }
 
+    public String returnBook(String bookTitle){
+        Book book = new Book(bookTitle, null, 0);
+        String returnedBook = "That is not a valid book to return.";
+        try {
+            Book bookInArchive = getBook(book);
+            if (bookInArchive.isCheckedOut()) {
+                bookInArchive.returnBook();
+                returnedBook = "Thank you for returning the book.";
+            }
+        } catch (BookNotFoundException e) {
+            return returnedBook;
+        }
+        return returnedBook;
+    }
 
 }
