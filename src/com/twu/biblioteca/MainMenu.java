@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import exceptions.BookNotFoundException;
+
 import java.util.Scanner;
 
 /**
@@ -44,7 +46,12 @@ public class MainMenu {
         Book book = new Book(bookTitle, null, 0);
         String checkoutMessage = "That book is not available";
         if(archive.containsBook(book)) {
-            Book bookInArchive = archive.getBook(book);
+            Book bookInArchive = null;
+            try {
+                bookInArchive = archive.getBook(book);
+            } catch (BookNotFoundException e) {
+                return checkoutMessage;
+            }
             if (!bookInArchive.isCheckedOut()) {
                 checkoutMessage = "Thank you! Enjoy the book";
             }
@@ -52,13 +59,17 @@ public class MainMenu {
         return checkoutMessage;
     }
 
-    public boolean returnBook(Archive archive, String bookTitle){
+    public String returnBook(Archive archive, String bookTitle){
         Book book = new Book(bookTitle, null, 0);
-        boolean returnedBook = false;
-        archive.getBook(book).returnBook();
-        Book bookInArchive = archive.getBook(book);
-        if (!bookInArchive.isCheckedOut()) {
-            returnedBook = true;
+        String returnedBook = "That is not a valid book to return.";
+        try {
+            archive.getBook(book).returnBook();
+            Book bookInArchive = archive.getBook(book);
+            if (!bookInArchive.isCheckedOut()) {
+                returnedBook = "Thank you for returning the book.";
+            }
+        } catch (BookNotFoundException e) {
+            return returnedBook;
         }
         return returnedBook;
     }

@@ -79,7 +79,32 @@ public class MainMenuTest {
         books.add(americanGods);
         Archive archive = new Archive(books);
         assertEquals("That book is not available", menu.checkoutBook(archive, "Bible"));
-        assertTrue(menu.returnBook(archive, "Bible"));
+        assertEquals("Thank you for returning the book.", menu.returnBook(archive, "Bible"));
+    }
+
+    @Test
+    public void shouldReturnSuccessMessageWhenReturningBook(){
+        MainMenu menu = new MainMenu();
+        Book bible = new Book("Bible", "God", 0);
+        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
+        List<Book> books = new ArrayList<>();
+        americanGods.checkOut();
+        books.add(bible);
+        books.add(americanGods);
+        Archive archive = new Archive(books);
+        assertEquals("Thank you for returning the book.", menu.returnBook(archive, "American Gods"));
+    }
+
+    @Test
+    public void shouldReturnErrorMessageWhenReturningBookNotFromTheLibrary(){
+        MainMenu menu = new MainMenu();
+        Book foundation = new Book("Foundation", "Isaac Asimov", 1951);
+        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
+        List<Book> books = new ArrayList<>();
+        books.add(americanGods);
+        books.add(foundation);
+        Archive archive = new Archive(books);
+        assertEquals("That is not a valid book to return.", menu.returnBook(archive, "Bible"));
     }
 
 }

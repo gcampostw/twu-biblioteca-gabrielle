@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import exceptions.BookNotFoundException;
+
 import java.util.List;
 
 /**
@@ -35,7 +37,10 @@ public class Archive {
 
     }
 
-    public Book getBook(Book book){
+    public Book getBook(Book book) throws BookNotFoundException {
+        if(books.indexOf(book) < 0){
+            throw new BookNotFoundException();
+        }
         return books.get(books.indexOf(book));
 
     }
