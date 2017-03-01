@@ -12,57 +12,8 @@ public class MainMenu {
     private User logedUser = null;
 
     public MainMenu(){
-        this.itensArchive = loadArchive();
-        this.usersArchive = loadUsers();
-    }
-
-    public static ItensArchive loadArchive(){
-        Book bible = new Book("1984", "George Orwell", 1949);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        Book foundation = new Book("Foundation", "Isaac Asimov", 1951);
-        Book harryPotter1 = new Book("Harry Potter and the Philosophers Stone", "J. K. Rowling", 1997);
-        Book hobbit = new Book("The Hobbit", ". R. R. Tolkien", 1937);
-        Book hungerGames = new Book("The Hunger Games", "Suzanne Collins", 2008);
-
-        Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7.7);
-        Movie avatar = new Movie("Avatar", "James Cameron", 2009, 7.8);
-        Movie moonlight = new Movie("Moonlight", "Barry Jenkins", 2017, 7.8);
-        Movie laland = new Movie("La La Land", "Damien Chazelle", 2017, 8.5);
-        Movie lion = new Movie("Lion", "Garth Davis", 2017, 8);
-
-        List<Book> itens = new ArrayList<>();
-        itens.add(bible);
-        itens.add(americanGods);
-        itens.add(foundation);
-        itens.add(harryPotter1);
-        itens.add(hobbit);
-        itens.add(hungerGames);
-
-        itens.add(titanic);
-        itens.add(avatar);
-        itens.add(moonlight);
-        itens.add(laland);
-        itens.add(lion);
-
-        return new ItensArchive(itens);
-    }
-
-    private static UsersArchive loadUsers(){
-        User user1 = new User("111-1111","password1", "User Number 1",
-                "usernbm1@gmail.com", "81981889999");
-        User user2 = new User("222-2222","password2", "User Number 2",
-                "usernbm2@gmail.com", "81982889999");
-        User user3 = new User("333-3333","password3", "User Number 3",
-                "usernbm1@gmail.com", "81983889999");
-        User user4 = new User("444-4444","password4", "User Number 4",
-                "usernbm1@gmail.com", "81984889999");
-
-        List<User> users = new ArrayList<>();
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-        users.add(user4);
-        return new UsersArchive(users);
+        this.itensArchive = new ItensArchive(null);
+        this.usersArchive = new UsersArchive(null);
     }
 
     public void start(){
@@ -114,11 +65,11 @@ public class MainMenu {
                     System.out.println(this.itensArchive.listMovies());
                     break;
                 case 3:
-                    message = this.itensArchive.checkoutItem(getBookChoice());
+                    message = this.itensArchive.checkoutItem(getItemChoice());
                     System.out.println(message);
                     break;
                 case 4:
-                    message = this.itensArchive.returnItem(getBookChoice());
+                    message = this.itensArchive.returnItem(getItemChoice());
                     System.out.println(message);
                     break;
                 case 5:
@@ -138,16 +89,14 @@ public class MainMenu {
         return validOption;
     }
 
-    public String getBookChoice(){
-        Scanner bookInput = new Scanner(System.in);
-        String bookTitle;
+    public String getItemChoice(){
+        Scanner input = new Scanner(System.in);
         System.out.print("Type the book title: ");
-        bookTitle = bookInput.nextLine();
-        return bookTitle;
+        return input.nextLine();
     }
 
     public void keepLogingInUntilCorrectCredentialsAreEntered(){
-        User user = null;
+        User user;
         Scanner input = new Scanner(System.in);
         do{
             System.out.print("Library number: ");
@@ -169,7 +118,7 @@ public class MainMenu {
     }
 
     public User login(String user, String password) {
-        User archivedUser = null;
+        User archivedUser;
         try{
             archivedUser = this.usersArchive.getUser(user);
             if(archivedUser.getPassword().equals(password)){
