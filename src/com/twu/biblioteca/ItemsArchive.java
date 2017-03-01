@@ -14,7 +14,7 @@ public class ItemsArchive {
         }
     }
 
-    public void load(){
+    private void load(){
         Book bible = new Book("1984", "George Orwell", 1949);
         Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
         Book foundation = new Book("Foundation", "Isaac Asimov", 1951);
@@ -45,15 +45,7 @@ public class ItemsArchive {
         this.itens = itens;
     }
 
-    public String listTitles(){
-        String listOfBooks = "| Title | ";
-        for (Book book: itens) {
-            listOfBooks = String.join("\n", listOfBooks, book.getTitle());
-        }
-        return listOfBooks;
-    }
-
-    private String listItens(String header){
+    private String listItems(String header){
         String listOfItems = header;
         boolean listBooks = true;
         if(header.contains("Rating")){
@@ -69,25 +61,23 @@ public class ItemsArchive {
         return listOfItems;
     }
 
-    public String listBooks() {
-        return listItens("Title | Author | Year");
+    protected String listBooks() {
+        return listItems("Title | Author | Year");
     }
 
-    public String listMovies(){
-        return listItens("Title | Director | Year | Rating");
+    protected String listMovies(){
+        return listItems("Title | Director | Year | Rating");
     }
 
-    public boolean containsItem(Book item){
+    private boolean containsItem(Book item){
         return itens.contains(item);
-
     }
 
-    public Book getItem(Book item) throws IndexOutOfBoundsException {
+    private Book getItem(Book item) throws IndexOutOfBoundsException {
         return itens.get(itens.indexOf(item));
-
     }
 
-    public String checkoutItem(String itemTitle) {
+    protected String checkoutItem(String itemTitle) {
         Book item = new Book(itemTitle, null, 0);
         String checkoutMessage = "That book is not available";
         if(containsItem(item)) {
@@ -105,7 +95,7 @@ public class ItemsArchive {
         return checkoutMessage;
     }
 
-    public String returnItem(String itemTitle){
+    protected String returnItem(String itemTitle){
         Book item = new Book(itemTitle, null, 0);
         String returnItemMessage = "That is not a valid book to return.";
         try {

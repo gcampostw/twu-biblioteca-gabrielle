@@ -10,15 +10,6 @@ import static org.junit.Assert.assertEquals;
 public class ItemsArchiveTest {
 
     @Test
-    public void shouldPrintListOfTitles(){
-        Book bible = new Book("Bible", null, 0);
-        List<Book> books = new ArrayList<>();
-        books.add(bible);
-        ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("| Title | \nBible", itemsArchive.listTitles());
-    }
-
-    @Test
     public void shouldPrintListOfBooksWithDetails(){
         Book bible = new Book("Bible", "God", 0);
         Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
