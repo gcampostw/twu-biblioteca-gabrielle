@@ -5,6 +5,7 @@ import java.util.List;
 
 public class UsersArchive {
     private List<User> users;
+    private User loggedUser;
 
     public UsersArchive(List<User> users){
         if(users == null){
@@ -33,9 +34,28 @@ public class UsersArchive {
         this.users = users;
     }
 
+    public User login(String user, String password) {
+        User archivedUser;
+        try{
+            archivedUser = getUser(user);
+            if(archivedUser.getPassword().equals(password)){
+                archivedUser.login();
+            }else{
+                archivedUser = null;
+            }
+        }catch(IndexOutOfBoundsException e){
+            archivedUser = null;
+        }
+        return archivedUser;
+    }
+
     public User getUser(String username) throws IndexOutOfBoundsException{
         User user = new User(username, null, null, null, null);
         return users.get(users.indexOf(user));
+    }
+
+    public void setLoggedUser(User user){
+        this.loggedUser = user;
     }
 
 }

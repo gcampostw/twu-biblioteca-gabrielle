@@ -6,8 +6,7 @@ public class MainMenu {
 
     private final int QUIT_CODE = 5;
     private ItemsArchive itemsArchive;
-    private final UsersArchive usersArchive;
-    private User loggedUser = null;
+    private UsersArchive usersArchive;
 
     public MainMenu(){
         this.itemsArchive = new ItemsArchive(null);
@@ -27,25 +26,25 @@ public class MainMenu {
             String userName = input.nextLine();
             System.out.print("Password: ");
             String password = input.nextLine();
-            user = login(userName, password);
+            user = usersArchive.login(userName, password);
             if(user==null){
                 printWrongLoginCredentialsMessage();
             }
         }while(user == null);
 
-        setLoggedUser(user);
-        printLoggedUserInformation();
+        usersArchive.setLoggedUser(user);
+        printLoggedUserInformation(user);
     }
 
     private void printWrongLoginCredentialsMessage(){
         System.out.println("----Wrong credentials. Please, try again!----");
     }
 
-    private void printLoggedUserInformation(){
+    private void printLoggedUserInformation(User user){
         System.out.println("---------- User Details ----------");
-        System.out.println("Name: "+getLoggedUser().getName());
-        System.out.println("Email: "+getLoggedUser().getEmail());
-        System.out.println("Phone: "+getLoggedUser().getPhoneNumber());
+        System.out.println("Name: "+user.getName());
+        System.out.println("Email: "+user.getEmail());
+        System.out.println("Phone: "+user.getPhoneNumber());
         System.out.println("----------------------------------");
     }
 
@@ -112,28 +111,5 @@ public class MainMenu {
         Scanner input = new Scanner(System.in);
         System.out.print("Type the book title: ");
         return input.nextLine();
-    }
-
-    protected User login(String user, String password) {
-        User archivedUser;
-        try{
-            archivedUser = this.usersArchive.getUser(user);
-            if(archivedUser.getPassword().equals(password)){
-                archivedUser.login();
-            }else{
-                archivedUser = null;
-            }
-        }catch(IndexOutOfBoundsException e){
-            archivedUser = null;
-        }
-        return archivedUser;
-    }
-
-    private void setLoggedUser(User user){
-        this.loggedUser = user;
-    }
-
-    private User getLoggedUser(){
-        return this.loggedUser;
     }
 }

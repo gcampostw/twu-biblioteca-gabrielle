@@ -2,9 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class MainMenuTest {
@@ -30,17 +27,4 @@ public class MainMenuTest {
         assertEquals(true, menu.validUserOptionInput(1));
     }
 
-    @Test
-    public void userShouldLogin(){
-        MainMenu menu = new MainMenu();
-        assertNotNull(menu.login("111-1111", "password1"));
-    }
-
-    @Test
-    public void userShouldBeLoggedIn(){
-        MainMenu menu = new MainMenu();
-        User loggedUser = menu.login("222-2222", "password2");
-        assertNotNull(loggedUser);
-        assertTrue(loggedUser.isLoggedIn());
-    }
 }
