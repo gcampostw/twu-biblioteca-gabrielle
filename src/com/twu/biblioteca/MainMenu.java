@@ -169,10 +169,15 @@ public class MainMenu {
     }
 
     public User login(String user, String password) {
-        User archivedUser = this.usersArchive.getUser(user);
-        if(archivedUser.getPassword().equals(password)){
-            archivedUser.login();
-        }else{
+        User archivedUser = null;
+        try{
+            archivedUser = this.usersArchive.getUser(user);
+            if(archivedUser.getPassword().equals(password)){
+                archivedUser.login();
+            }else{
+                archivedUser = null;
+            }
+        }catch(IndexOutOfBoundsException e){
             archivedUser = null;
         }
         return archivedUser;
