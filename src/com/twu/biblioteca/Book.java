@@ -40,4 +40,12 @@ public class Book {
         }
         return false;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getYear() {
+        return year;
+    }
 }
