@@ -15,10 +15,8 @@ public class UsersArchive {
         this.users = users;
     }
 
-    public User getUser(User user) throws UserNotFoundException {
-        if(users.indexOf(user) < 0){
-            throw new UserNotFoundException();
-        }
+    public User getUser(String username){
+        User user = new User(username, null);
         return users.get(users.indexOf(user));
     }
 

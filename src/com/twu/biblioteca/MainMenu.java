@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import exceptions.UserNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,9 +10,11 @@ public class MainMenu {
 
     private final int QUIT_CODE = 4;
     private ItensArchive itensArchive;
+    private final UsersArchive usersArchive;
 
     public MainMenu(){
         this.itensArchive = loadArchive();
+        this.usersArchive = loadUsers();
     }
 
     public static ItensArchive loadArchive(){
@@ -29,6 +33,20 @@ public class MainMenu {
         books.add(hobbit);
         books.add(hungerGames);
         return new ItensArchive(books);
+    }
+
+    private static UsersArchive loadUsers(){
+        User user1 = new User("111-1111","password1");
+        User user2 = new User("222-2222","password2");
+        User user3 = new User("333-3333","password3");
+        User user4 = new User("444-4444","password4");
+
+        List<User> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
+        users.add(user4);
+        return new UsersArchive(users);
     }
 
     public void keepReadingUserInput(){
@@ -96,11 +114,12 @@ public class MainMenu {
     }
 
     public User login(String user, String password) {
-        User loggedInUser = null;
-        if(user.equals("000-0000") && password.equals("password")){
-            loggedInUser = new User(user, password);
-            loggedInUser.login();
+        User archivedUser = this.usersArchive.getUser(user);
+        if(archivedUser.getPassword().equals(password)){
+            archivedUser.login();
+        }else{
+            archivedUser = null;
         }
-        return loggedInUser;
+        return archivedUser;
     }
 }
