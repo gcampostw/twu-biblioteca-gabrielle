@@ -32,7 +32,16 @@ public class MainMenuTest {
     @Test
     public void userShouldLogin(){
         MainMenu menu = new MainMenu();
-        assertTrue(menu.login("000-0000", "password"));
+        assertNotNull(menu.login("000-0000", "password"));
+
+    }
+
+    @Test
+    public void userShouldBeLoggedIn(){
+        MainMenu menu = new MainMenu();
+        User loggedUser = menu.login("000-0000", "password");
+        assertTrue(loggedUser.isLoggedIn());
+        assertNotNull(loggedUser);
     }
 
 }

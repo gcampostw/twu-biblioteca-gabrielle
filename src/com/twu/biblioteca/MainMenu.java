@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import exceptions.UserNotFoundException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -97,11 +95,12 @@ public class MainMenu {
         return bookTitle;
     }
 
-    public boolean login(String user, String password) {
-        boolean loggedIn = false;
+    public User login(String user, String password) {
+        User loggedInUser = null;
         if(user.equals("000-0000") && password.equals("password")){
-            loggedIn = true;
+            loggedInUser = new User(user, password);
+            loggedInUser.login();
         }
-        return loggedIn;
+        return loggedInUser;
     }
 }

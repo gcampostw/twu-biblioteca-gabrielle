@@ -4,21 +4,21 @@ package com.twu.biblioteca;
  * Created by gcampos on 01/03/17.
  */
 public class User {
-    private String login;
+    private String user;
     private String password;
     private boolean loggedIn;
 
-    public User(String login, String password){
-        this.login = login;
+    public User(String user, String password){
+        this.user = user;
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUser() {
+        return user;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
@@ -33,9 +33,13 @@ public class User {
         return loggedIn;
     }
 
+    public void login(){
+        this.loggedIn = true;
+    }
+
     @Override
     public boolean equals(Object user2){
-        if(this.login.equalsIgnoreCase(((User) user2).login)){
+        if(this.user.equalsIgnoreCase(((User) user2).user)){
             return true;
         }
         return false;
