@@ -5,18 +5,17 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
-public class ArchiveTest {
+public class ItensArchiveTest {
 
     @Test
     public void shouldPrintListOfTitles(){
         Book bible = new Book("Bible", null, 0);
         List<Book> books = new ArrayList<>();
         books.add(bible);
-        Archive archive = new Archive(books);
-        assertEquals("| Title | \nBible", archive.listTitles());
+        ItensArchive itensArchive = new ItensArchive(books);
+        assertEquals("| Title | \nBible", itensArchive.listTitles());
     }
 
     @Test
@@ -26,10 +25,10 @@ public class ArchiveTest {
         List<Book> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
-        Archive archive = new Archive(books);
+        ItensArchive itensArchive = new ItensArchive(books);
         String bookOne = String.join("\n", "Title | Author | Year", "Bible | God | 0",
                 "American Gods | Neil Gaiman | 2001");
-        assertEquals(bookOne, archive.listBooks());
+        assertEquals(bookOne, itensArchive.listBooks());
     }
 
     @Test
@@ -40,9 +39,9 @@ public class ArchiveTest {
         bible.checkOut();
         books.add(bible);
         books.add(americanGods);
-        Archive archive = new Archive(books);
+        ItensArchive itensArchive = new ItensArchive(books);
         String listOfBooks = String.join("\n", "Title | Author | Year", "American Gods | Neil Gaiman | 2001");
-        assertEquals(listOfBooks, archive.listBooks());
+        assertEquals(listOfBooks, itensArchive.listBooks());
     }
 
     @Test
@@ -52,8 +51,8 @@ public class ArchiveTest {
         List<Book> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
-        Archive archive = new Archive(books);
-        assertEquals("Thank you! Enjoy the book", archive.checkoutBook("American Gods"));
+        ItensArchive itensArchive = new ItensArchive(books);
+        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutBook("American Gods"));
     }
 
     @Test
@@ -63,8 +62,8 @@ public class ArchiveTest {
         List<Book> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
-        Archive archive = new Archive(books);
-        assertEquals("That book is not available", archive.checkoutBook("American Goods"));
+        ItensArchive itensArchive = new ItensArchive(books);
+        assertEquals("That book is not available", itensArchive.checkoutBook("American Goods"));
     }
 
     @Test
@@ -74,9 +73,9 @@ public class ArchiveTest {
         List<Book> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
-        Archive archive = new Archive(books);
-        assertEquals("Thank you! Enjoy the book", archive.checkoutBook("Bible"));
-        assertEquals("That book is not available", archive.checkoutBook("Bible"));
+        ItensArchive itensArchive = new ItensArchive(books);
+        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutBook("Bible"));
+        assertEquals("That book is not available", itensArchive.checkoutBook("Bible"));
     }
 
     @Test
@@ -86,10 +85,10 @@ public class ArchiveTest {
         List<Book> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
-        Archive archive = new Archive(books);
-        assertEquals("Thank you! Enjoy the book", archive.checkoutBook("American Gods"));
-        assertEquals("That book is not available", archive.checkoutBook("American Gods"));
-        assertEquals("Thank you for returning the book.", archive.returnBook("American Gods"));
+        ItensArchive itensArchive = new ItensArchive(books);
+        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutBook("American Gods"));
+        assertEquals("That book is not available", itensArchive.checkoutBook("American Gods"));
+        assertEquals("Thank you for returning the book.", itensArchive.returnBook("American Gods"));
     }
 
     @Test
@@ -99,8 +98,8 @@ public class ArchiveTest {
         List<Book> books = new ArrayList<>();
         books.add(americanGods);
         books.add(foundation);
-        Archive archive = new Archive(books);
-        assertEquals("That book is not available", archive.checkoutBook("Bible"));
+        ItensArchive itensArchive = new ItensArchive(books);
+        assertEquals("That book is not available", itensArchive.checkoutBook("Bible"));
     }
 
     @Test
@@ -112,11 +111,11 @@ public class ArchiveTest {
         books.add(bible);
         books.add(titanic);
         books.add(avatar);
-        Archive archive = new Archive(books);
+        ItensArchive itensArchive = new ItensArchive(books);
         String bookOne = String.join("\n", "Title | Director | Year | Rating",
                 "Titanic | James Cameron | 1997 | 7",
                 "Avatar | James Cameron | 2009 | 8");
-        assertEquals(bookOne, archive.listMovies());
+        assertEquals(bookOne, itensArchive.listMovies());
     }
 
     @Test
@@ -127,9 +126,9 @@ public class ArchiveTest {
         titanic.checkOut();
         books.add(titanic);
         books.add(avatar);
-        Archive archive = new Archive(books);
+        ItensArchive itensArchive = new ItensArchive(books);
         String listOfBooks = String.join("\n", "Title | Director | Year | Rating", "Avatar | James Cameron | 2009 | 8");
-        assertEquals(listOfBooks, archive.listMovies());
+        assertEquals(listOfBooks, itensArchive.listMovies());
     }
 
 }

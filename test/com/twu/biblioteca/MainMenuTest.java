@@ -29,4 +29,10 @@ public class MainMenuTest {
         assertEquals(true, menu.validUserOptionInput(1));
     }
 
+    @Test
+    public void userShouldLogin(){
+        MainMenu menu = new MainMenu();
+        assertTrue(menu.login("000-0000", "password"));
+    }
+
 }

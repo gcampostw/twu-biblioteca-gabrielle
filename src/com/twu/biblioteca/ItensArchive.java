@@ -5,10 +5,10 @@ import exceptions.BookNotFoundException;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class Archive {
+public class ItensArchive {
     private List<Book> books;
 
-    public Archive(List<Book> books){
+    public ItensArchive(List<Book> books){
         this.books = books;
     }
 

@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import exceptions.UserNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,13 +9,13 @@ import java.util.Scanner;
 public class MainMenu {
 
     private final int QUIT_CODE = 4;
-    private Archive archive;
+    private ItensArchive itensArchive;
 
     public MainMenu(){
-        this.archive = loadArchive();
+        this.itensArchive = loadArchive();
     }
 
-    public static Archive loadArchive(){
+    public static ItensArchive loadArchive(){
         Book bible = new Book("1984", "George Orwell", 1949);
         Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
         Book foundation = new Book("Foundation", "Isaac Asimov", 1951);
@@ -28,7 +30,7 @@ public class MainMenu {
         books.add(harryPotter1);
         books.add(hobbit);
         books.add(hungerGames);
-        return new Archive(books);
+        return new ItensArchive(books);
     }
 
     public void keepReadingUserInput(){
@@ -60,14 +62,14 @@ public class MainMenu {
         if(validUserOptionInput(option)){
             switch (option){
                 case 1:
-                    System.out.println(this.archive.listBooks());
+                    System.out.println(this.itensArchive.listBooks());
                     break;
                 case 2:
-                    message = this.archive.checkoutBook(getBookChoice());
+                    message = this.itensArchive.checkoutBook(getBookChoice());
                     System.out.println(message);
                     break;
                 case 3:
-                    message = this.archive.returnBook(getBookChoice());
+                    message = this.itensArchive.returnBook(getBookChoice());
                     System.out.println(message);
                     break;
                 case 4:
@@ -93,5 +95,13 @@ public class MainMenu {
         System.out.print("Type the book title: ");
         bookTitle = bookInput.nextLine();
         return bookTitle;
+    }
+
+    public boolean login(String user, String password) {
+        boolean loggedIn = false;
+        if(user.equals("000-0000") && password.equals("password")){
+            loggedIn = true;
+        }
+        return loggedIn;
     }
 }
