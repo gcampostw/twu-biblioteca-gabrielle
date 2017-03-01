@@ -12,9 +12,10 @@ public class MainMenuTest {
     public void shouldShowListBooksOption() throws Exception {
         MainMenu menu = new MainMenu();
         assertEquals("1 - List Books\n" +
-                "2 - Checkout Book\n" +
-                "3 - Return Book\n" +
-                "4 - Quit\n", menu.listOptions());
+                "2 - List Movies\n" +
+                "3 - Checkout Item\n" +
+                "4 - Return Item\n" +
+                "5 - Quit\n", menu.listOptions());
     }
 
     @Test

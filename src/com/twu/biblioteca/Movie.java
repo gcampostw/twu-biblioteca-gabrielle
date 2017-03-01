@@ -1,19 +1,19 @@
 package com.twu.biblioteca;
 
 public class Movie extends Book {
-    private int rating;
+    private double rating;
 
-    public Movie(String title, String author, int year, int rating) {
+    public Movie(String title, String author, int year, double rating) {
         super(title, author, year);
         this.rating = rating;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
     @Override
     public String toString(){
-        return String.format("%s | %s | %d | %d", this.getTitle(), this.getAuthor(), this.getYear(), this.rating);
+        return String.format("%s | %s | %d | %.1f", this.getTitle(), this.getAuthor(), this.getYear(), this.rating);
     }
 }

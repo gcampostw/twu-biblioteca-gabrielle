@@ -113,8 +113,8 @@ public class ItensArchiveTest {
         books.add(avatar);
         ItensArchive itensArchive = new ItensArchive(books);
         String bookOne = String.join("\n", "Title | Director | Year | Rating",
-                "Titanic | James Cameron | 1997 | 7",
-                "Avatar | James Cameron | 2009 | 8");
+                "Titanic | James Cameron | 1997 | 7.0",
+                "Avatar | James Cameron | 2009 | 8.0");
         assertEquals(bookOne, itensArchive.listMovies());
     }
 
@@ -127,7 +127,7 @@ public class ItensArchiveTest {
         books.add(titanic);
         books.add(avatar);
         ItensArchive itensArchive = new ItensArchive(books);
-        String listOfBooks = String.join("\n", "Title | Director | Year | Rating", "Avatar | James Cameron | 2009 | 8");
+        String listOfBooks = String.join("\n", "Title | Director | Year | Rating", "Avatar | James Cameron | 2009 | 8.0");
         assertEquals(listOfBooks, itensArchive.listMovies());
     }
 

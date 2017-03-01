@@ -26,14 +26,28 @@ public class MainMenu {
         Book hobbit = new Book("The Hobbit", ". R. R. Tolkien", 1937);
         Book hungerGames = new Book("The Hunger Games", "Suzanne Collins", 2008);
 
-        List<Book> books = new ArrayList<>();
-        books.add(bible);
-        books.add(americanGods);
-        books.add(foundation);
-        books.add(harryPotter1);
-        books.add(hobbit);
-        books.add(hungerGames);
-        return new ItensArchive(books);
+        Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7.7);
+        Movie avatar = new Movie("Avatar", "James Cameron", 2009, 7.8);
+        Movie moonlight = new Movie("Moonlight", "Barry Jenkins", 2017, 7.8);
+        Movie laland = new Movie("La La Land", "Damien Chazelle", 2017, 8.5);
+        Movie lion = new Movie("Lion", "Garth Davis", 2017, 8);
+
+        List<Book> itens = new ArrayList<>();
+        itens.add(bible);
+        itens.add(americanGods);
+        itens.add(foundation);
+        itens.add(harryPotter1);
+        itens.add(hobbit);
+        itens.add(hungerGames);
+
+        itens.add(titanic);
+        itens.add(avatar);
+        itens.add(hungerGames);
+        itens.add(moonlight);
+        itens.add(laland);
+        itens.add(lion);
+
+        return new ItensArchive(itens);
     }
 
     private static UsersArchive loadUsers(){
@@ -86,9 +100,10 @@ public class MainMenu {
 
     public String listOptions(){
         return "1 - List Books\n" +
-                "2 - Checkout Book\n" +
-                "3 - Return Book\n" +
-                "4 - Quit\n";
+                "2 - List Movies\n" +
+                "3 - Checkout Item\n" +
+                "4 - Return Item\n" +
+                "5 - Quit\n";
     }
 
     public void processUserChoice(int option){
@@ -99,14 +114,17 @@ public class MainMenu {
                     System.out.println(this.itensArchive.listBooks());
                     break;
                 case 2:
+                    System.out.println(this.itensArchive.listMovies());
+                    break;
+                case 3:
                     message = this.itensArchive.checkoutBook(getBookChoice());
                     System.out.println(message);
                     break;
-                case 3:
+                case 4:
                     message = this.itensArchive.returnBook(getBookChoice());
                     System.out.println(message);
                     break;
-                case 4:
+                case 5:
                     System.out.println("Closing Library Application");
                     break;
             }
