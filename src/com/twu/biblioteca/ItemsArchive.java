@@ -3,10 +3,10 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItensArchive {
+public class ItemsArchive {
     private List<Book> itens;
 
-    public ItensArchive(List<Book> itens){
+    public ItemsArchive(List<Book> itens){
         if(itens == null){
             load();
         }else{
