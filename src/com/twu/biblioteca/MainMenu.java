@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    private final int QUIT_CODE = 4;
+    private final int QUIT_CODE = 5;
     private ItensArchive itensArchive;
     private final UsersArchive usersArchive;
     private User logedUser = null;
@@ -42,7 +42,6 @@ public class MainMenu {
 
         itens.add(titanic);
         itens.add(avatar);
-        itens.add(hungerGames);
         itens.add(moonlight);
         itens.add(laland);
         itens.add(lion);
@@ -125,7 +124,7 @@ public class MainMenu {
                     System.out.println(message);
                     break;
                 case 5:
-                    System.out.println("Closing Library Application");
+                    System.out.println("----Closing Library Application----");
                     break;
             }
         }else{
@@ -158,10 +157,17 @@ public class MainMenu {
             System.out.print("Password: ");
             String password = input.nextLine();
             user = login(userName, password);
+            if(user==null){
+                printWrongLoginCredentialsMessage();
+            }
         }while(user == null);
 
         setLogedUser(user);
         printLoggedUserInformation();
+    }
+
+    public void printWrongLoginCredentialsMessage(){
+        System.out.println("----Wrong credentials. Please, try again!----");
     }
 
     public User login(String user, String password) {
