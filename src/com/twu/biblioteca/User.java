@@ -6,27 +6,21 @@ package com.twu.biblioteca;
 public class User {
     private String user;
     private String password;
+    private final String name;
+    private final String email;
+    private final String phoneNumber;
     private boolean loggedIn;
 
-    public User(String user, String password){
+    public User(String user, String password, String name, String email, String phoneNumber){
         this.user = user;
         this.password = password;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean isLoggedIn() {

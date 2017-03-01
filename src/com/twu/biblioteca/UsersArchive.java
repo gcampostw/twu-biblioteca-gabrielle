@@ -16,7 +16,7 @@ public class UsersArchive {
     }
 
     public User getUser(String username){
-        User user = new User(username, null);
+        User user = new User(username, null, null, null, null);
         return users.get(users.indexOf(user));
     }
 
