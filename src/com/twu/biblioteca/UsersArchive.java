@@ -1,8 +1,5 @@
 package com.twu.biblioteca;
 
-import exceptions.BookNotFoundException;
-import exceptions.UserNotFoundException;
-
 import java.util.List;
 
 public class UsersArchive {

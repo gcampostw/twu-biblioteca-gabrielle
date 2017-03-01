@@ -21,7 +21,7 @@ public class Book {
         this.checkedOut = true;
     }
 
-    public void returnBook(){
+    public void returnItem(){
         this.checkedOut = false;
     }
 

@@ -34,7 +34,6 @@ public class MainMenuTest {
     public void userShouldLogin(){
         MainMenu menu = new MainMenu();
         assertNotNull(menu.login("111-1111", "password1"));
-
     }
 
     @Test

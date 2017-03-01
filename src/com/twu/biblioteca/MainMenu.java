@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import exceptions.UserNotFoundException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -116,11 +114,11 @@ public class MainMenu {
                     System.out.println(this.itensArchive.listMovies());
                     break;
                 case 3:
-                    message = this.itensArchive.checkoutBook(getBookChoice());
+                    message = this.itensArchive.checkoutItem(getBookChoice());
                     System.out.println(message);
                     break;
                 case 4:
-                    message = this.itensArchive.returnBook(getBookChoice());
+                    message = this.itensArchive.returnItem(getBookChoice());
                     System.out.println(message);
                     break;
                 case 5:

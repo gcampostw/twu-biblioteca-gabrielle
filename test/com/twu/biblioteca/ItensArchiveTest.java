@@ -52,7 +52,7 @@ public class ItensArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItensArchive itensArchive = new ItensArchive(books);
-        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutBook("American Gods"));
+        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutItem("American Gods"));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ItensArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItensArchive itensArchive = new ItensArchive(books);
-        assertEquals("That book is not available", itensArchive.checkoutBook("American Goods"));
+        assertEquals("That book is not available", itensArchive.checkoutItem("American Goods"));
     }
 
     @Test
@@ -74,8 +74,8 @@ public class ItensArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItensArchive itensArchive = new ItensArchive(books);
-        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutBook("Bible"));
-        assertEquals("That book is not available", itensArchive.checkoutBook("Bible"));
+        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutItem("Bible"));
+        assertEquals("That book is not available", itensArchive.checkoutItem("Bible"));
     }
 
     @Test
@@ -86,9 +86,9 @@ public class ItensArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItensArchive itensArchive = new ItensArchive(books);
-        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutBook("American Gods"));
-        assertEquals("That book is not available", itensArchive.checkoutBook("American Gods"));
-        assertEquals("Thank you for returning the book.", itensArchive.returnBook("American Gods"));
+        assertEquals("Thank you! Enjoy the book", itensArchive.checkoutItem("American Gods"));
+        assertEquals("That book is not available", itensArchive.checkoutItem("American Gods"));
+        assertEquals("Thank you for returning the book.", itensArchive.returnItem("American Gods"));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class ItensArchiveTest {
         books.add(americanGods);
         books.add(foundation);
         ItensArchive itensArchive = new ItensArchive(books);
-        assertEquals("That book is not available", itensArchive.checkoutBook("Bible"));
+        assertEquals("That book is not available", itensArchive.checkoutItem("Bible"));
     }
 
     @Test
