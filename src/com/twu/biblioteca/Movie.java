@@ -1,8 +1,5 @@
 package com.twu.biblioteca;
 
-/**
- * Created by gcampos on 01/03/17.
- */
 public class Movie extends Book {
     private int rating;
 

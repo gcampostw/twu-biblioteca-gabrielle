@@ -5,9 +5,6 @@ import exceptions.UserNotFoundException;
 
 import java.util.List;
 
-/**
- * Created by gcampos on 01/03/17.
- */
 public class UsersArchive {
     private List<User> users;
 

@@ -1,8 +1,5 @@
 package com.twu.biblioteca;
 
-/**
- * Created by gcampos on 01/03/17.
- */
 public class User {
     private String user;
     private String password;
@@ -37,5 +34,17 @@ public class User {
             return true;
         }
         return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

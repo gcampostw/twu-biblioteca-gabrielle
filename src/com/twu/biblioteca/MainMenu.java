@@ -11,6 +11,7 @@ public class MainMenu {
     private final int QUIT_CODE = 4;
     private ItensArchive itensArchive;
     private final UsersArchive usersArchive;
+    private User logedUser = null;
 
     public MainMenu(){
         this.itensArchive = loadArchive();
@@ -53,6 +54,11 @@ public class MainMenu {
         return new UsersArchive(users);
     }
 
+    public void start(){
+        keepLogingInUntilCorrectCredentialsAreEntered();
+        keepReadingUserInput();
+    }
+
     public void keepReadingUserInput(){
         Scanner input = new Scanner(System.in);
         int option;
@@ -68,6 +74,14 @@ public class MainMenu {
     public void printMenuHeader(){
         System.out.println(listOptions());
         System.out.print("Your option: ");
+    }
+
+    public void printLoggedUserInformation(){
+        System.out.println("---------- User Details ----------");
+        System.out.println("Name: "+getLoggedUser().getName());
+        System.out.println("Email: "+getLoggedUser().getEmail());
+        System.out.println("Phone: "+getLoggedUser().getPhoneNumber());
+        System.out.println("----------------------------------");
     }
 
     public String listOptions(){
@@ -117,6 +131,21 @@ public class MainMenu {
         return bookTitle;
     }
 
+    public void keepLogingInUntilCorrectCredentialsAreEntered(){
+        User user = null;
+        Scanner input = new Scanner(System.in);
+        do{
+            System.out.print("Library number: ");
+            String userName = input.nextLine();
+            System.out.print("Password: ");
+            String password = input.nextLine();
+            user = login(userName, password);
+        }while(user == null);
+
+        setLogedUser(user);
+        printLoggedUserInformation();
+    }
+
     public User login(String user, String password) {
         User archivedUser = this.usersArchive.getUser(user);
         if(archivedUser.getPassword().equals(password)){
@@ -125,5 +154,13 @@ public class MainMenu {
             archivedUser = null;
         }
         return archivedUser;
+    }
+
+    public void setLogedUser(User user){
+        this.logedUser = user;
+    }
+
+    public User getLoggedUser(){
+        return this.logedUser;
     }
 }

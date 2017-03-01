@@ -43,5 +43,4 @@ public class MainMenuTest {
         assertNotNull(loggedUser);
         assertTrue(loggedUser.isLoggedIn());
     }
-
 }
