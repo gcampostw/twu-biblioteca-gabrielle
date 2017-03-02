@@ -2,11 +2,14 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class MainMenuTest {
     @Test
-    public void shouldShowListBooksOption() throws Exception {
+    public void shouldShowListBooksOptionWithoutContactDetails(){
         MainMenu menu = new MainMenu();
         assertEquals("1 - List Books\n" +
                 "2 - List Movies\n" +
@@ -18,7 +21,7 @@ public class MainMenuTest {
     @Test
     public void shouldBeInvalidOption(){
         MainMenu menu = new MainMenu();
-        assertEquals(false, menu.validUserOptionInput(6));
+        assertEquals(false, menu.validUserOptionInput(9));
     }
 
     @Test

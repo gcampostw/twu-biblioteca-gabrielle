@@ -54,8 +54,19 @@ public class UsersArchive {
         return users.get(users.indexOf(user));
     }
 
+    public boolean isUserLogged(){
+        boolean isLogged = false;
+        if(this.loggedUser != null){
+            isLogged = true;
+        }
+        return isLogged;
+    }
+
     public void setLoggedUser(User user){
         this.loggedUser = user;
     }
 
+    public User getLoggedUser() {
+        return loggedUser;
+    }
 }

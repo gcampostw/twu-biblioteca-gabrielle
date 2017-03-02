@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsArchive {
-    private List<Book> itens;
+    private List<Book> items;
 
-    public ItemsArchive(List<Book> itens){
-        if(itens == null){
+    public ItemsArchive(List<Book> items){
+        if(items == null){
             load();
         }else{
-            this.itens = itens;
+            this.items = items;
         }
     }
 
@@ -42,39 +42,47 @@ public class ItemsArchive {
         itens.add(laland);
         itens.add(lion);
 
-        this.itens = itens;
+        this.items = itens;
     }
 
-    private String listItems(String header){
+    private String listItems(String header, boolean shouldListOnlyBooks){
         String listOfItems = header;
-        boolean listBooks = true;
-        if(header.contains("Rating")){
-            listBooks = false;
-        }
-        for (Book item: itens) {
-            if(!item.isCheckedOut()){
-                if((!listBooks && item instanceof Movie) || (listBooks && !(item instanceof Movie))){
-                    listOfItems = String.join("\n", listOfItems, item.toString());
-                }
+
+        for (Book item: items) {
+            if(shouldListThisItem(item, shouldListOnlyBooks)){
+                listOfItems = String.join("\n", listOfItems, item.toString());
             }
         }
         return listOfItems;
     }
 
+    private boolean shouldListThisItem(Book item, boolean shouldListOnlyBooks){
+        boolean listItem = false;
+
+        if(!item.isCheckedOut()) {
+            boolean isMovie = isMovieInstance(item);
+
+            if ((!shouldListOnlyBooks && isMovie) || (shouldListOnlyBooks && !isMovie)) {
+                listItem = true;
+            }
+        }
+        return listItem;
+    }
+
     protected String listBooks() {
-        return listItems("Title | Author | Year");
+        return listItems("Title | Author | Year", true);
     }
 
     protected String listMovies(){
-        return listItems("Title | Director | Year | Rating");
+        return listItems("Title | Director | Year | Rating", false);
     }
 
     private boolean containsItem(Book item){
-        return itens.contains(item);
+        return items.contains(item);
     }
 
     private Book getItem(Book item) throws IndexOutOfBoundsException {
-        return itens.get(itens.indexOf(item));
+        return items.get(items.indexOf(item));
     }
 
     protected String checkoutItem(String itemTitle) {
@@ -108,6 +116,14 @@ public class ItemsArchive {
             return returnItemMessage;
         }
         return returnItemMessage;
+    }
+
+    private boolean isMovieInstance(Book item){
+        boolean isInstance = false;
+        if(item instanceof Movie){
+            isInstance = true;
+        }
+        return isInstance;
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class MainMenu {
 
     private final int QUIT_CODE = 5;
+    private final int LAST_OPTION = 6;
     private ItemsArchive itemsArchive;
     private UsersArchive usersArchive;
 
@@ -13,9 +14,11 @@ public class MainMenu {
         this.usersArchive = new UsersArchive(null);
     }
 
-    public void start(){
-        keepLogingInUntilCorrectCredentialsAreEntered();
-        keepReadingUserInput();
+    private void login(){
+        if(!usersArchive.isUserLogged()){
+            System.out.println("You need to login for this operation. Please enter details below.");
+            keepLogingInUntilCorrectCredentialsAreEntered();
+        }
     }
 
     private void keepLogingInUntilCorrectCredentialsAreEntered(){
@@ -25,22 +28,25 @@ public class MainMenu {
             System.out.print("Library number: ");
             String userName = input.nextLine();
             System.out.print("Password: ");
+            
             String password = input.nextLine();
             user = usersArchive.login(userName, password);
+            
             if(user==null){
                 printWrongLoginCredentialsMessage();
             }
         }while(user == null);
 
         usersArchive.setLoggedUser(user);
-        printLoggedUserInformation(user);
+        System.out.println("----Successful  login. Continue your operation!---");
     }
 
     private void printWrongLoginCredentialsMessage(){
         System.out.println("----Wrong credentials. Please, try again!----");
     }
 
-    private void printLoggedUserInformation(User user){
+    private void printLoggedUserInformation(){
+        User user = usersArchive.getLoggedUser();
         System.out.println("---------- User Details ----------");
         System.out.println("Name: "+user.getName());
         System.out.println("Email: "+user.getEmail());
@@ -65,11 +71,21 @@ public class MainMenu {
     }
 
     protected String listOptions(){
-        return "1 - List Books\n" +
-                "2 - List Movies\n" +
-                "3 - Checkout Item\n" +
-                "4 - Return Item\n" +
-                "5 - Quit\n";
+        String defaultMenu ="1 - List Books\n" +
+                            "2 - List Movies\n" +
+                            "3 - Checkout Item\n" +
+                            "4 - Return Item\n" +
+                            "5 - Quit\n";
+
+        if(usersArchive.isUserLogged()){
+            defaultMenu = "1 - List Books\n" +
+                          "2 - List Movies\n" +
+                          "3 - Checkout Item\n" +
+                          "4 - Return Item\n" +
+                          "5 - Quit\n" +
+                          "6 - Show my details";
+        }
+        return defaultMenu;
     }
 
     private void processUserChoice(int option){
@@ -83,25 +99,29 @@ public class MainMenu {
                     System.out.println(this.itemsArchive.listMovies());
                     break;
                 case 3:
+                    login();
                     message = this.itemsArchive.checkoutItem(getItemChoice());
                     System.out.println(message);
                     break;
                 case 4:
+                    login();
                     message = this.itemsArchive.returnItem(getItemChoice());
                     System.out.println(message);
                     break;
                 case 5:
                     System.out.println("----Closing Library Application----");
                     break;
+                case 6:
+                    printLoggedUserInformation();
             }
         }else{
-            System.out.println("Select a valid option!");
+            System.out.println("----Select a valid option!----");
         }
     }
 
     protected boolean validUserOptionInput(int option) {
         boolean validOption = true;
-        if(option > QUIT_CODE || option < 1){
+        if(option > LAST_OPTION || option < 1){
             validOption = false;
         }
         return validOption;
@@ -112,4 +132,5 @@ public class MainMenu {
         System.out.print("Type the book title: ");
         return input.nextLine();
     }
+
 }
