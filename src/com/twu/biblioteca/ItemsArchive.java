@@ -87,7 +87,7 @@ public class ItemsArchive {
 
     protected String checkoutItem(String itemTitle) {
         Book item = new Book(itemTitle, null, 0);
-        String checkoutMessage = "That book is not available";
+        String checkoutMessage = "That item is not available";
         if(containsItem(item)) {
             Book itemInArchive;
             try {
@@ -97,7 +97,7 @@ public class ItemsArchive {
             }
             if (!itemInArchive.isCheckedOut()) {
                 itemInArchive.checkOut();
-                checkoutMessage = "Thank you! Enjoy the book";
+                checkoutMessage = "Thank you! Enjoy the item";
             }
         }
         return checkoutMessage;
@@ -105,12 +105,12 @@ public class ItemsArchive {
 
     protected String returnItem(String itemTitle){
         Book item = new Book(itemTitle, null, 0);
-        String returnItemMessage = "That is not a valid book to return.";
+        String returnItemMessage = "That is not a valid item to return.";
         try {
             Book itemInArchive = getItem(item);
             if (itemInArchive.isCheckedOut()) {
                 itemInArchive.returnItem();
-                returnItemMessage = "Thank you for returning the book.";
+                returnItemMessage = "Thank you for returning the item.";
             }
         } catch (IndexOutOfBoundsException e) {
             return returnItemMessage;
