@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsArchive {
-    private List<Book> items;
+    private List<Item> items;
 
-    public ItemsArchive(List<Book> items){
+    public ItemsArchive(List<Item> items){
         if(items == null){
             load();
         }else{
@@ -15,12 +15,12 @@ public class ItemsArchive {
     }
 
     private void load(){
-        Book bible = new Book("1984", "George Orwell", 1949);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        Book foundation = new Book("Foundation", "Isaac Asimov", 1951);
-        Book harryPotter1 = new Book("Harry Potter and the Philosophers Stone", "J. K. Rowling", 1997);
-        Book hobbit = new Book("The Hobbit", ". R. R. Tolkien", 1937);
-        Book hungerGames = new Book("The Hunger Games", "Suzanne Collins", 2008);
+        Item bible = new Item("1984", "George Orwell", 1949);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        Item foundation = new Item("Foundation", "Isaac Asimov", 1951);
+        Item harryPotter1 = new Item("Harry Potter and the Philosophers Stone", "J. K. Rowling", 1997);
+        Item hobbit = new Item("The Hobbit", ". R. R. Tolkien", 1937);
+        Item hungerGames = new Item("The Hunger Games", "Suzanne Collins", 2008);
 
         Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7.7);
         Movie avatar = new Movie("Avatar", "James Cameron", 2009, 7.8);
@@ -28,7 +28,7 @@ public class ItemsArchive {
         Movie laland = new Movie("La La Land", "Damien Chazelle", 2017, 8.5);
         Movie lion = new Movie("Lion", "Garth Davis", 2017, 8);
 
-        List<Book> itens = new ArrayList<>();
+        List<Item> itens = new ArrayList<>();
         itens.add(bible);
         itens.add(americanGods);
         itens.add(foundation);
@@ -48,7 +48,7 @@ public class ItemsArchive {
     private String listItems(String header, boolean shouldListOnlyBooks){
         String listOfItems = header;
 
-        for (Book item: items) {
+        for (Item item: items) {
             if(shouldListThisItem(item, shouldListOnlyBooks)){
                 listOfItems = String.join("\n", listOfItems, item.toString());
             }
@@ -56,7 +56,7 @@ public class ItemsArchive {
         return listOfItems;
     }
 
-    private boolean shouldListThisItem(Book item, boolean shouldListOnlyBooks){
+    private boolean shouldListThisItem(Item item, boolean shouldListOnlyBooks){
         boolean listItem = false;
 
         if(!item.isCheckedOut()) {
@@ -77,19 +77,19 @@ public class ItemsArchive {
         return listItems("Title | Director | Year | Rating", false);
     }
 
-    private boolean containsItem(Book item){
+    private boolean containsItem(Item item){
         return items.contains(item);
     }
 
-    private Book getItem(Book item) throws IndexOutOfBoundsException {
+    private Item getItem(Item item) throws IndexOutOfBoundsException {
         return items.get(items.indexOf(item));
     }
 
     protected String checkoutItem(String itemTitle) {
-        Book item = new Book(itemTitle, null, 0);
+        Item item = new Item(itemTitle, null, 0);
         String checkoutMessage = "That item is not available";
         if(containsItem(item)) {
-            Book itemInArchive;
+            Item itemInArchive;
             try {
                 itemInArchive = getItem(item);
             } catch (IndexOutOfBoundsException e) {
@@ -104,10 +104,10 @@ public class ItemsArchive {
     }
 
     protected String returnItem(String itemTitle){
-        Book item = new Book(itemTitle, null, 0);
+        Item item = new Item(itemTitle, null, 0);
         String returnItemMessage = "That is not a valid item to return.";
         try {
-            Book itemInArchive = getItem(item);
+            Item itemInArchive = getItem(item);
             if (itemInArchive.isCheckedOut()) {
                 itemInArchive.returnItem();
                 returnItemMessage = "Thank you for returning the item.";
@@ -118,7 +118,7 @@ public class ItemsArchive {
         return returnItemMessage;
     }
 
-    private boolean isMovieInstance(Book item){
+    private boolean isMovieInstance(Item item){
         boolean isInstance = false;
         if(item instanceof Movie){
             isInstance = true;

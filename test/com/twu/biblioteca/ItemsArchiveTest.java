@@ -11,9 +11,9 @@ public class ItemsArchiveTest {
 
     @Test
     public void shouldPrintListOfBooksWithDetails(){
-        Book bible = new Book("Bible", "God", 0);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        List<Book> books = new ArrayList<>();
+        Item bible = new Item("Bible", "God", 0);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        List<Item> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
@@ -24,9 +24,9 @@ public class ItemsArchiveTest {
 
     @Test
     public void shouldNotPrintLentBooks(){
-        Book bible = new Book("Bible", "God", 0);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        List<Book> books = new ArrayList<>();
+        Item bible = new Item("Bible", "God", 0);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        List<Item> books = new ArrayList<>();
         bible.checkOut();
         books.add(bible);
         books.add(americanGods);
@@ -37,68 +37,68 @@ public class ItemsArchiveTest {
 
     @Test
     public void shouldCheckOutAvailableBook(){
-        Book bible = new Book("Bible", "People", 0);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        List<Book> books = new ArrayList<>();
+        Item bible = new Item("Bible", "People", 0);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        List<Item> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("Thank you! Enjoy the book", itemsArchive.checkoutItem("American Gods"));
+        assertEquals("Thank you! Enjoy the item", itemsArchive.checkoutItem("American Gods"));
     }
 
     @Test
     public void shouldReturnErrorMessageWhenCheckingoutBookWithIncorrectBookTitle(){
-        Book bible = new Book("Bible", "People", 0);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        List<Book> books = new ArrayList<>();
+        Item bible = new Item("Bible", "People", 0);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        List<Item> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("That book is not available", itemsArchive.checkoutItem("American Goods"));
+        assertEquals("That item is not available", itemsArchive.checkoutItem("American Goods"));
     }
 
     @Test
     public void shouldReturnErrorMessageWhenCheckingOutCheckedOutBook(){
-        Book bible = new Book("Bible", "People", 0);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        List<Book> books = new ArrayList<>();
+        Item bible = new Item("Bible", "People", 0);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        List<Item> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("Thank you! Enjoy the book", itemsArchive.checkoutItem("Bible"));
-        assertEquals("That book is not available", itemsArchive.checkoutItem("Bible"));
+        assertEquals("Thank you! Enjoy the item", itemsArchive.checkoutItem("Bible"));
+        assertEquals("That item is not available", itemsArchive.checkoutItem("Bible"));
     }
 
     @Test
     public void shouldReturnSuccessMessageWhenReturningBook(){
-        Book bible = new Book("Bible", "God", 0);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        List<Book> books = new ArrayList<>();
+        Item bible = new Item("Bible", "God", 0);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        List<Item> books = new ArrayList<>();
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("Thank you! Enjoy the book", itemsArchive.checkoutItem("American Gods"));
-        assertEquals("That book is not available", itemsArchive.checkoutItem("American Gods"));
-        assertEquals("Thank you for returning the book.", itemsArchive.returnItem("American Gods"));
+        assertEquals("Thank you! Enjoy the item", itemsArchive.checkoutItem("American Gods"));
+        assertEquals("That item is not available", itemsArchive.checkoutItem("American Gods"));
+        assertEquals("Thank you for returning the item.", itemsArchive.returnItem("American Gods"));
     }
 
     @Test
     public void shouldReturnErrorMessageWhenReturningBookNotFromTheLibrary(){
-        Book foundation = new Book("Foundation", "Isaac Asimov", 1951);
-        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
-        List<Book> books = new ArrayList<>();
+        Item foundation = new Item("Foundation", "Isaac Asimov", 1951);
+        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
+        List<Item> books = new ArrayList<>();
         books.add(americanGods);
         books.add(foundation);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("That book is not available", itemsArchive.checkoutItem("Bible"));
+        assertEquals("That item is not available", itemsArchive.checkoutItem("Bible"));
     }
 
     @Test
     public void shouldListOnlyMovies(){
-        Book bible = new Book("Bible", "God", 0);
+        Item bible = new Item("Bible", "God", 0);
         Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7);
         Movie avatar = new Movie("Avatar", "James Cameron", 2009, 8);
-        List<Book> books = new ArrayList<>();
+        List<Item> books = new ArrayList<>();
         books.add(bible);
         books.add(titanic);
         books.add(avatar);
@@ -113,7 +113,7 @@ public class ItemsArchiveTest {
     public void shouldNotPrintLentMovies(){
         Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7);
         Movie avatar = new Movie("Avatar", "James Cameron", 2009, 8);
-        List<Book> books = new ArrayList<>();
+        List<Item> books = new ArrayList<>();
         titanic.checkOut();
         books.add(titanic);
         books.add(avatar);
