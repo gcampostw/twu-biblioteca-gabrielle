@@ -28,21 +28,21 @@ public class ItemsArchive {
         Movie laland = new Movie("La La Land", "Damien Chazelle", 2017, 8.5);
         Movie lion = new Movie("Lion", "Garth Davis", 2017, 8);
 
-        List<Item> itens = new ArrayList<>();
-        itens.add(bible);
-        itens.add(americanGods);
-        itens.add(foundation);
-        itens.add(harryPotter1);
-        itens.add(hobbit);
-        itens.add(hungerGames);
+        List<Item> items = new ArrayList<>();
+        items.add(bible);
+        items.add(americanGods);
+        items.add(foundation);
+        items.add(harryPotter1);
+        items.add(hobbit);
+        items.add(hungerGames);
 
-        itens.add(titanic);
-        itens.add(avatar);
-        itens.add(moonlight);
-        itens.add(laland);
-        itens.add(lion);
+        items.add(titanic);
+        items.add(avatar);
+        items.add(moonlight);
+        items.add(laland);
+        items.add(lion);
 
-        this.items = itens;
+        this.items = items;
     }
 
     private String listItems(String header, boolean shouldListOnlyBooks){

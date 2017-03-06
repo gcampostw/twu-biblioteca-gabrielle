@@ -78,12 +78,7 @@ public class MainMenu {
                             "5 - Quit\n";
 
         if(usersArchive.isUserLogged()){
-            defaultMenu = "1 - List Books\n" +
-                          "2 - List Movies\n" +
-                          "3 - Checkout Item\n" +
-                          "4 - Return Item\n" +
-                          "5 - Quit\n" +
-                          "6 - Show my details";
+            defaultMenu += "6 - Show my details\n";
         }
         return defaultMenu;
     }
