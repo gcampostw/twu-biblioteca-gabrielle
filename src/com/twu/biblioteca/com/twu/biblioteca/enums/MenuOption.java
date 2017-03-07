@@ -4,9 +4,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by gcampos on 07/03/17.
- */
+
 public enum MenuOption {
     LIST_BOOKS(1, "List Books"),
     LIST_MOVIES(2, "List Movies"),

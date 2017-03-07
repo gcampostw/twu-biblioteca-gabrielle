@@ -65,16 +65,6 @@ public class MainMenu {
     }
 
     protected String listOptions(){
-//        String defaultMenu ="1 - List Books\n" +
-//                            "2 - List Movies\n" +
-//                            "3 - Checkout Item\n" +
-//                            "4 - Return Item\n" +
-//                            "5 - Quit\n";
-//
-//        if(usersArchive.isUserLogged()){
-//            defaultMenu += "6 - Show my details\n";
-//        }
-//        return defaultMenu;
         return MenuOption.listOptions(this.usersArchive.isUserLogged());
     }
 
