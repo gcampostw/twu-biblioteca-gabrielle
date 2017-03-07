@@ -8,10 +8,12 @@ import java.util.Map;
 public enum MenuOption {
     LIST_BOOKS(1, "List Books"),
     LIST_MOVIES(2, "List Movies"),
-    CHECKOUT_ITEM(3, "Checkout Item"),
-    RETURN_ITEM(4, "Return Item"),
-    SHOW_USER_DETAILS(5, "Show my details"),
-    QUIT(6, "Quit");
+    CHECKOUT_BOOK(3, "Checkout Book"),
+    CHECKOUT_MOVIE(4, "Checkout Movie"),
+    RETURN_BOOK(5, "Return Book"),
+    RETURN_MOVIE(6, "Return Movie"),
+    SHOW_USER_DETAILS(7, "Show my details"),
+    QUIT(8, "Quit");
     private final int value;
     private final String option;
     private static final Map<Integer, MenuOption> lookup = new HashMap<Integer, MenuOption>();

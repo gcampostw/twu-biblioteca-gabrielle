@@ -78,11 +78,11 @@ public class MainMenu {
                 case LIST_MOVIES:
                     message = this.itemsArchive.listMovies();
                     break;
-                case CHECKOUT_ITEM:
+                case CHECKOUT_BOOK:
                     login();
                     message = this.itemsArchive.checkoutItem(getItemChoice());
                     break;
-                case RETURN_ITEM:
+                case RETURN_BOOK:
                     login();
                     message = this.itemsArchive.returnItem(getItemChoice());
                     break;

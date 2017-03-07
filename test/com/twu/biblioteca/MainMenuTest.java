@@ -14,8 +14,10 @@ public class MainMenuTest {
         MainMenu menu = new MainMenu();
         assertEquals("1 - List Books\n" +
                 "2 - List Movies\n" +
-                "3 - Checkout Item\n" +
-                "4 - Return Item\n" +
-                "6 - Quit\n", menu.listOptions());
+                "3 - Checkout Book\n" +
+                "4 - Checkout Movie\n" +
+                "5 - Return Book\n" +
+                "6 - Return Movie\n" +
+                "8 - Quit\n", menu.listOptions());
     }
 }
