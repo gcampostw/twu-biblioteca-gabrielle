@@ -68,10 +68,12 @@ public class UsersArchive {
 
     public String getLoggedUserInformation(){
         User user = this.loggedUser;
-        String userInformation = "---------- User Details ----------\n";
-        userInformation += String.format("Name: %s\nEmail: %s\nPhone: %s\n", user.getName(), user.getEmail(),
-                user.getPhoneNumber());
-        userInformation += "----------------------------------";
+        String userInformation = "There is no user logged in";
+        if(user != null) {
+            userInformation += String.format("Name: %s\nEmail: %s\nPhone: %s\n", user.getName(), user.getEmail(),
+                    user.getPhoneNumber());
+            userInformation += "----------------------------------";
+        }
         return userInformation;
     }
 

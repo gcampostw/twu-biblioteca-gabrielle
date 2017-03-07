@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.com.twu.biblioteca.enums.MenuOption;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,19 +16,6 @@ public class MainMenuTest {
                 "2 - List Movies\n" +
                 "3 - Checkout Item\n" +
                 "4 - Return Item\n" +
-                "5 - Quit\n", menu.listOptions());
+                "6 - Quit\n", menu.listOptions());
     }
-
-    @Test
-    public void shouldBeInvalidOption(){
-        MainMenu menu = new MainMenu();
-        assertEquals(false, menu.validUserOptionInput(9));
-    }
-
-    @Test
-    public void shouldBeValidOption(){
-        MainMenu menu = new MainMenu();
-        assertEquals(true, menu.validUserOptionInput(1));
-    }
-
 }

@@ -1,11 +1,13 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.com.twu.biblioteca.enums.MenuOption;
+
 import java.util.Scanner;
+
+import static com.twu.biblioteca.com.twu.biblioteca.enums.MenuOption.*;
 
 public class MainMenu {
 
-    private final int QUIT_CODE = 5;
-    private final int LAST_OPTION = 6;
     private ItemsArchive itemsArchive;
     private UsersArchive usersArchive;
 
@@ -47,13 +49,14 @@ public class MainMenu {
 
     public void keepReadingUserInput(){
         Scanner input = new Scanner(System.in);
-        int option;
+        MenuOption option;
         do{
             printMenuHeader();
-            option = input.nextInt();
+            option = MenuOption.get(input.nextInt());
             processUserChoice(option);
+
             System.out.println();
-        }while(option != QUIT_CODE);
+        }while(option != QUIT);
     }
 
     private void printMenuHeader(){
@@ -62,53 +65,46 @@ public class MainMenu {
     }
 
     protected String listOptions(){
-        String defaultMenu ="1 - List Books\n" +
-                            "2 - List Movies\n" +
-                            "3 - Checkout Item\n" +
-                            "4 - Return Item\n" +
-                            "5 - Quit\n";
-
-        if(usersArchive.isUserLogged()){
-            defaultMenu += "6 - Show my details\n";
-        }
-        return defaultMenu;
+//        String defaultMenu ="1 - List Books\n" +
+//                            "2 - List Movies\n" +
+//                            "3 - Checkout Item\n" +
+//                            "4 - Return Item\n" +
+//                            "5 - Quit\n";
+//
+//        if(usersArchive.isUserLogged()){
+//            defaultMenu += "6 - Show my details\n";
+//        }
+//        return defaultMenu;
+        return MenuOption.listOptions(this.usersArchive.isUserLogged());
     }
 
-    private void processUserChoice(int option){
+    private void processUserChoice(MenuOption option){
         String message = "----Select a valid option!----";
-        if(validUserOptionInput(option)){
+        if(option != null){
             switch (option){
-                case 1:
+                case LIST_BOOKS:
                    message = this.itemsArchive.listBooks();
                     break;
-                case 2:
+                case LIST_MOVIES:
                     message = this.itemsArchive.listMovies();
                     break;
-                case 3:
+                case CHECKOUT_ITEM:
                     login();
                     message = this.itemsArchive.checkoutItem(getItemChoice());
                     break;
-                case 4:
+                case RETURN_ITEM:
                     login();
                     message = this.itemsArchive.returnItem(getItemChoice());
                     break;
-                case 5:
+                case QUIT:
                     message = "----Closing Library Application----";
                     break;
-                case 6:
+                case SHOW_USER_DETAILS:
                     message = usersArchive.getLoggedUserInformation();
             }
         }
 
         System.out.println(message);
-    }
-
-    protected boolean validUserOptionInput(int option) {
-        boolean validOption = true;
-        if(option > LAST_OPTION || option < 1){
-            validOption = false;
-        }
-        return validOption;
     }
 
     private String getItemChoice(){
