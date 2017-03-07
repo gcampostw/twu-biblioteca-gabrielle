@@ -7,9 +7,6 @@ public class UsersArchive {
     private List<User> users;
     private User loggedUser;
 
-    public UsersArchive(List<User> users){
-        this.users = users;
-    }
     public UsersArchive(){
         load();
     }
@@ -68,4 +65,14 @@ public class UsersArchive {
     public User getLoggedUser() {
         return loggedUser;
     }
+
+    public String getLoggedUserInformation(){
+        User user = this.loggedUser;
+        String userInformation = "---------- User Details ----------\n";
+        userInformation += String.format("Name: %s\nEmail: %s\nPhone: %s\n", user.getName(), user.getEmail(),
+                user.getPhoneNumber());
+        userInformation += "----------------------------------";
+        return userInformation;
+    }
+
 }

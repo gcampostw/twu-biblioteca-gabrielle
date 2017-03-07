@@ -45,15 +45,6 @@ public class MainMenu {
         System.out.println("----Wrong credentials. Please, try again!----");
     }
 
-    private void printLoggedUserInformation(){
-        User user = usersArchive.getLoggedUser();
-        System.out.println("---------- User Details ----------");
-        System.out.println("Name: "+user.getName());
-        System.out.println("Email: "+user.getEmail());
-        System.out.println("Phone: "+user.getPhoneNumber());
-        System.out.println("----------------------------------");
-    }
-
     public void keepReadingUserInput(){
         Scanner input = new Scanner(System.in);
         int option;
@@ -84,34 +75,32 @@ public class MainMenu {
     }
 
     private void processUserChoice(int option){
-        String message;
+        String message = "----Select a valid option!----";
         if(validUserOptionInput(option)){
             switch (option){
                 case 1:
-                    System.out.println(this.itemsArchive.listBooks());
+                   message = this.itemsArchive.listBooks();
                     break;
                 case 2:
-                    System.out.println(this.itemsArchive.listMovies());
+                    message = this.itemsArchive.listMovies();
                     break;
                 case 3:
                     login();
                     message = this.itemsArchive.checkoutItem(getItemChoice());
-                    System.out.println(message);
                     break;
                 case 4:
                     login();
                     message = this.itemsArchive.returnItem(getItemChoice());
-                    System.out.println(message);
                     break;
                 case 5:
-                    System.out.println("----Closing Library Application----");
+                    message = "----Closing Library Application----";
                     break;
                 case 6:
-                    printLoggedUserInformation();
+                    message = usersArchive.getLoggedUserInformation();
             }
-        }else{
-            System.out.println("----Select a valid option!----");
         }
+
+        System.out.println(message);
     }
 
     protected boolean validUserOptionInput(int option) {
