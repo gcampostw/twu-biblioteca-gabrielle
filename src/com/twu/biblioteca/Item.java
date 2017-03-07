@@ -36,13 +36,4 @@ public class Item {
     public int getYear() {
         return year;
     }
-
-    @Override
-    public boolean equals(Object item2){
-        return this.getTitle().equalsIgnoreCase(((Item) item2).getTitle());
-    }
-
-    public String toString(){
-        return String.format("%s | %s | %d", this.getTitle(), this.getAuthor(), this.getYear());
-    }
 }
