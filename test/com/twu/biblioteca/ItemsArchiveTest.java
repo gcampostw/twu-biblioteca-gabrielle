@@ -148,10 +148,24 @@ public class ItemsArchiveTest {
         bookTitanic.checkOut();
         ItemsArchive itemsArchive = new ItemsArchive(items);
         String response = itemsArchive.checkoutMovie("Titanic");
-        String expectedResponse = "Thank you! Enjoy the item";
 
-        assertEquals(expectedResponse, response);
+        assertEquals("Thank you! Enjoy the item", response);
         assertTrue(titanic.isCheckedOut());
+    }
+
+    @Test
+    public void shouldReturnMovieNotBookWithSameTitle(){
+        Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7);
+        Book bookTitanic = new Book("Titanic", "James Cameron", 1997);
+        List<Item> items = new ArrayList<>();
+        items.add(bookTitanic);
+        items.add(titanic);
+        titanic.checkOut();
+        ItemsArchive itemsArchive = new ItemsArchive(items);
+        String response = itemsArchive.returnMovie("Titanic");
+
+        assertEquals("Thank you for returning the item.", response);
+        assertFalse(bookTitanic.isCheckedOut());
     }
 
 }

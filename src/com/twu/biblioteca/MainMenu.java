@@ -82,9 +82,17 @@ public class MainMenu {
                     login();
                     message = this.itemsArchive.checkoutBook(getItemTitleChoice());
                     break;
+                case CHECKOUT_MOVIE:
+                    login();
+                    message = this.itemsArchive.checkoutMovie(getItemTitleChoice());
+                    break;
                 case RETURN_BOOK:
                     login();
                     message = this.itemsArchive.returnBook(getItemTitleChoice());
+                    break;
+                case RETURN_MOVIE:
+                    login();
+                    message = this.itemsArchive.returnMovie(getItemTitleChoice());
                     break;
                 case QUIT:
                     message = "----Closing Library Application----";
