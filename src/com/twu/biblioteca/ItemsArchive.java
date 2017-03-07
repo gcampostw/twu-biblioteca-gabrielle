@@ -90,8 +90,8 @@ public class ItemsArchive {
         return checkoutItem(movie);
     }
 
-    protected String checkoutItem(String itemTitle) {
-        Item book = new Item(itemTitle, null, 0);
+    protected String checkoutBook(String itemTitle) {
+        Book book = new Book(itemTitle, null, 0);
         return checkoutItem(book);
     }
 
@@ -112,8 +112,17 @@ public class ItemsArchive {
         return checkoutMessage;
     }
 
-    protected String returnItem(String itemTitle){
-        Item item = new Item(itemTitle, null, 0);
+    protected String returnMovie(String itemTitle) {
+        Movie movie = new Movie(itemTitle, null, 0, 0);
+        return returnItem(movie);
+    }
+
+    protected String returnBook(String itemTitle) {
+        Book book = new Book(itemTitle, null, 0);
+        return returnItem(book);
+    }
+
+    private String returnItem(Item item){
         String returnItemMessage = "That is not a valid item to return.";
         try {
             Item itemInArchive = getItem(item);

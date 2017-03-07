@@ -80,11 +80,11 @@ public class MainMenu {
                     break;
                 case CHECKOUT_BOOK:
                     login();
-                    message = this.itemsArchive.checkoutItem(getItemChoice());
+                    message = this.itemsArchive.checkoutBook(getItemTitleChoice());
                     break;
                 case RETURN_BOOK:
                     login();
-                    message = this.itemsArchive.returnItem(getItemChoice());
+                    message = this.itemsArchive.returnBook(getItemTitleChoice());
                     break;
                 case QUIT:
                     message = "----Closing Library Application----";
@@ -97,7 +97,7 @@ public class MainMenu {
         System.out.println(message);
     }
 
-    private String getItemChoice(){
+    private String getItemTitleChoice(){
         Scanner input = new Scanner(System.in);
         System.out.print("Type the book title: ");
         return input.nextLine();

@@ -1,8 +1,5 @@
 package com.twu.biblioteca;
 
-/**
- * Created by gcampos on 07/03/17.
- */
 public class Book extends Item {
     public Book(String title, String author, int year) {
         super(title, author, year);
@@ -14,13 +11,14 @@ public class Book extends Item {
             return true;
         }
 
-        if(!(item2 instanceof Movie)){
+        if(!(item2 instanceof Book)){
             return false;
         }
 
         return this.getTitle().equalsIgnoreCase(((Book) item2).getTitle());
     }
 
+    @Override
     public String toString(){
         return String.format("%s | %s | %d", this.getTitle(), this.getAuthor(), this.getYear());
     }
