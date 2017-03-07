@@ -85,8 +85,17 @@ public class ItemsArchive {
         return items.get(items.indexOf(item));
     }
 
+    protected String checkoutMovie(String itemTitle) {
+        Movie movie = new Movie(itemTitle, null, 0, 0);
+        return checkoutItem(movie);
+    }
+
     protected String checkoutItem(String itemTitle) {
-        Item item = new Item(itemTitle, null, 0);
+        Item book = new Item(itemTitle, null, 0);
+        return checkoutItem(book);
+    }
+
+    private String checkoutItem(Item item) {
         String checkoutMessage = "That item is not available";
         if(containsItem(item)) {
             Item itemInArchive;

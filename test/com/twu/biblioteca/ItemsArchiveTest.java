@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ItemsArchiveTest {
 
@@ -120,6 +122,36 @@ public class ItemsArchiveTest {
         ItemsArchive itemsArchive = new ItemsArchive(books);
         String listOfBooks = String.join("\n", "Title | Director | Year | Rating", "Avatar | James Cameron | 2009 | 8.0");
         assertEquals(listOfBooks, itemsArchive.listMovies());
+    }
+
+    @Test
+    public void shouldCheckoutMovie(){
+        Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7);
+        Movie avatar = new Movie("Avatar", "James Cameron", 2009, 8);
+        List<Item> movies = new ArrayList<>();
+        movies.add(titanic);
+        movies.add(avatar);
+        ItemsArchive itemsArchive = new ItemsArchive(movies);
+        String response = itemsArchive.checkoutMovie("Titanic");
+        String expectedResponse = "Thank you! Enjoy the item";
+        assertEquals(expectedResponse, response);
+        assertTrue(titanic.isCheckedOut());
+    }
+
+    @Test
+    public void shouldCheckoutMovieNotBookWithSameTitle(){
+        Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7);
+        Item bookTitanic = new Item("Titanic", "James Cameron", 1997);
+        List<Item> items = new ArrayList<>();
+        items.add(bookTitanic);
+        items.add(titanic);
+        bookTitanic.checkOut();
+        ItemsArchive itemsArchive = new ItemsArchive(items);
+        String response = itemsArchive.checkoutMovie("Titanic");
+        String expectedResponse = "Thank you! Enjoy the item";
+
+        assertEquals(expectedResponse, response);
+        assertTrue(titanic.isCheckedOut());
     }
 
 }
