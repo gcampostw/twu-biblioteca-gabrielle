@@ -10,8 +10,8 @@ public class MainMenu {
     private UsersArchive usersArchive;
 
     public MainMenu(){
-        this.itemsArchive = new ItemsArchive(null);
-        this.usersArchive = new UsersArchive(null);
+        this.itemsArchive = new ItemsArchive();
+        this.usersArchive = new UsersArchive();
     }
 
     private void login(){

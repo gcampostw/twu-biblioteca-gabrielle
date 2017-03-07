@@ -7,11 +7,11 @@ public class ItemsArchive {
     private List<Item> items;
 
     public ItemsArchive(List<Item> items){
-        if(items == null){
-            load();
-        }else{
-            this.items = items;
-        }
+        this.items = items;
+    }
+
+    public ItemsArchive() {
+        load();
     }
 
     private void load(){

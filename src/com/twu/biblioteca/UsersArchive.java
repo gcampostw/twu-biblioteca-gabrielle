@@ -8,14 +8,13 @@ public class UsersArchive {
     private User loggedUser;
 
     public UsersArchive(List<User> users){
-        if(users == null){
-            load();
-        }else{
-            this.users = users;
-        }
+        this.users = users;
+    }
+    public UsersArchive(){
+        load();
     }
 
-    public void load(){
+    private void load(){
         User user1 = new User("111-1111","password1", "User Number 1",
                 "usernbm1@gmail.com", "81981889999");
         User user2 = new User("222-2222","password2", "User Number 2",
