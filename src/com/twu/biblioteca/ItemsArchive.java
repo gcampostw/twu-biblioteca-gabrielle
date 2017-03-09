@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.com.twu.biblioteca.enums.CheckoutItemMessages;
+import com.twu.biblioteca.com.twu.biblioteca.enums.ReturnItemMessages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +18,12 @@ public class ItemsArchive {
     }
 
     private void load(){
-        Item bible = new Item("1984", "George Orwell", 1949);
-        Item americanGods = new Item("American Gods", "Neil Gaiman", 2001);
-        Item foundation = new Item("Foundation", "Isaac Asimov", 1951);
-        Item harryPotter1 = new Item("Harry Potter and the Philosophers Stone", "J. K. Rowling", 1997);
-        Item hobbit = new Item("The Hobbit", ". R. R. Tolkien", 1937);
-        Item hungerGames = new Item("The Hunger Games", "Suzanne Collins", 2008);
+        Book bible = new Book("1984", "George Orwell", 1949);
+        Book americanGods = new Book("American Gods", "Neil Gaiman", 2001);
+        Book foundation = new Book("Foundation", "Isaac Asimov", 1951);
+        Book harryPotter1 = new Book("Harry Potter and the Philosophers Stone", "J. K. Rowling", 1997);
+        Book hobbit = new Book("The Hobbit", ". R. R. Tolkien", 1937);
+        Book hungerGames = new Book("The Hunger Games", "Suzanne Collins", 2008);
 
         Movie titanic = new Movie("Titanic", "James Cameron", 1997, 7.7);
         Movie avatar = new Movie("Avatar", "James Cameron", 2009, 7.8);
@@ -96,20 +99,20 @@ public class ItemsArchive {
     }
 
     private String checkoutItem(Item item) {
-        String checkoutMessage = "That item is not available";
+        CheckoutItemMessages checkoutMessage = CheckoutItemMessages.NOT_AVAILABLE;
         if(containsItem(item)) {
             Item itemInArchive;
             try {
                 itemInArchive = getItem(item);
+                if (!itemInArchive.isCheckedOut()) {
+                    itemInArchive.checkOut();
+                    checkoutMessage = CheckoutItemMessages.ENJOY_ITEM;
+                }
             } catch (IndexOutOfBoundsException e) {
-                return checkoutMessage;
-            }
-            if (!itemInArchive.isCheckedOut()) {
-                itemInArchive.checkOut();
-                checkoutMessage = "Thank you! Enjoy the item";
+                return checkoutMessage.getMessage();
             }
         }
-        return checkoutMessage;
+        return checkoutMessage.getMessage();
     }
 
     protected String returnMovie(String itemTitle) {
@@ -123,17 +126,17 @@ public class ItemsArchive {
     }
 
     private String returnItem(Item item){
-        String returnItemMessage = "That is not a valid item to return.";
+        ReturnItemMessages returnItemMessage = ReturnItemMessages.ITEM_NOT_VALID;
         try {
             Item itemInArchive = getItem(item);
             if (itemInArchive.isCheckedOut()) {
                 itemInArchive.returnItem();
-                returnItemMessage = "Thank you for returning the item.";
+                returnItemMessage = ReturnItemMessages.ITEM_RETURNED;
             }
         } catch (IndexOutOfBoundsException e) {
-            return returnItemMessage;
+            return returnItemMessage.getMessage();
         }
-        return returnItemMessage;
+        return returnItemMessage.getMessage();
     }
 
     private boolean isMovieInstance(Item item){

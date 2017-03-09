@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.com.twu.biblioteca.enums.CheckoutItemMessages;
+import com.twu.biblioteca.com.twu.biblioteca.enums.ReturnItemMessages;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -45,7 +47,7 @@ public class ItemsArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("Thank you! Enjoy the item", itemsArchive.checkoutBook("American Gods"));
+        assertEquals(CheckoutItemMessages.ENJOY_ITEM.getMessage(), itemsArchive.checkoutBook("American Gods"));
     }
 
     @Test
@@ -56,7 +58,7 @@ public class ItemsArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("That item is not available", itemsArchive.checkoutBook("American Goods"));
+        assertEquals(CheckoutItemMessages.NOT_AVAILABLE.getMessage(), itemsArchive.checkoutBook("American Goods"));
     }
 
     @Test
@@ -67,8 +69,8 @@ public class ItemsArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("Thank you! Enjoy the item", itemsArchive.checkoutBook("Bible"));
-        assertEquals("That item is not available", itemsArchive.checkoutBook("Bible"));
+        assertEquals(CheckoutItemMessages.ENJOY_ITEM.getMessage(), itemsArchive.checkoutBook("Bible"));
+        assertEquals(CheckoutItemMessages.NOT_AVAILABLE.getMessage(), itemsArchive.checkoutBook("Bible"));
     }
 
     @Test
@@ -79,9 +81,9 @@ public class ItemsArchiveTest {
         books.add(bible);
         books.add(americanGods);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("Thank you! Enjoy the item", itemsArchive.checkoutBook("American Gods"));
-        assertEquals("That item is not available", itemsArchive.checkoutBook("American Gods"));
-        assertEquals("Thank you for returning the item.", itemsArchive.returnBook("American Gods"));
+        assertEquals(CheckoutItemMessages.ENJOY_ITEM.getMessage(), itemsArchive.checkoutBook("American Gods"));
+        assertEquals(CheckoutItemMessages.NOT_AVAILABLE.getMessage(), itemsArchive.checkoutBook("American Gods"));
+        assertEquals(ReturnItemMessages.ITEM_RETURNED.getMessage(), itemsArchive.returnBook("American Gods"));
     }
 
     @Test
@@ -92,7 +94,7 @@ public class ItemsArchiveTest {
         books.add(americanGods);
         books.add(foundation);
         ItemsArchive itemsArchive = new ItemsArchive(books);
-        assertEquals("That item is not available", itemsArchive.checkoutBook("Bible"));
+        assertEquals(CheckoutItemMessages.NOT_AVAILABLE.getMessage(), itemsArchive.checkoutBook("Bible"));
     }
 
     @Test
@@ -133,7 +135,7 @@ public class ItemsArchiveTest {
         movies.add(avatar);
         ItemsArchive itemsArchive = new ItemsArchive(movies);
         String response = itemsArchive.checkoutMovie("Titanic");
-        String expectedResponse = "Thank you! Enjoy the item";
+        String expectedResponse = CheckoutItemMessages.ENJOY_ITEM.getMessage();
         assertEquals(expectedResponse, response);
         assertTrue(titanic.isCheckedOut());
     }
@@ -149,7 +151,7 @@ public class ItemsArchiveTest {
         ItemsArchive itemsArchive = new ItemsArchive(items);
         String response = itemsArchive.checkoutMovie("Titanic");
 
-        assertEquals("Thank you! Enjoy the item", response);
+        assertEquals(CheckoutItemMessages.ENJOY_ITEM.getMessage(), response);
         assertTrue(titanic.isCheckedOut());
     }
 
@@ -164,7 +166,7 @@ public class ItemsArchiveTest {
         ItemsArchive itemsArchive = new ItemsArchive(items);
         String response = itemsArchive.returnMovie("Titanic");
 
-        assertEquals("Thank you for returning the item.", response);
+        assertEquals(ReturnItemMessages.ITEM_RETURNED.getMessage(), response);
         assertFalse(bookTitanic.isCheckedOut());
     }
 
